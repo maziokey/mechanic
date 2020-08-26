@@ -128,6 +128,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# Local dev static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+# Production dev static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+]
 
 AUTH_USER_MODEL = 'users.CustomUser'
 

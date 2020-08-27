@@ -1,0 +1,108 @@
+{% extends 'form_base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Log In{% endblock title %}
+
+{% block content %}
+<div class="section section-signup page-header" style="background-image: url({% static 'images/city.jpg' %});">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mx-auto">
+        <div class="card card-login">
+          <form class="form" method="post">
+            {% csrf_token %}
+            <div class="card-header card-header-primary text-center">
+              <h4 class="card-title">Login</h4>
+              <div class="social-line">
+                <a href="#" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="#" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a href="#" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+              </div>
+            </div>
+            <p class="description text-center">Or Be Classical</p>
+            <div class="card-body">
+              {% crispy form %}
+              <div class="footer text-center">
+                <button class="btn btn-primary btn-link btn-wd btn-lg" type="submit">Log In</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+
+
+<!--test
+<div class="input-group">
+  {{ form|crispy }}
+</div>
+<div class="footer text-center">
+  <button class="btn btn-primary btn-link btn-wd btn-lg" type="submit">Log In</button>
+</div>
+
+
+
+<div class="section section-signup page-header" style="background-image: url({% static 'images/city.jpg' %});">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mx-auto">
+        <div class="card card-login">
+          <form class="form" method="post">
+            {% csrf_token %}
+            <div class="card-header card-header-primary text-center">
+              <h4 class="card-title">Login</h4>
+              <div class="social-line">
+                <a href="#" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="#" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a href="#" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+              </div>
+            </div>
+            <p class="description text-center">Or Be Classical</p>
+            <div class="card-body">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">face</i>
+                  </span>
+                </div>
+                {{ form.username|as_crispy_field }}
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">mail</i>
+                  </span>
+                </div>
+                {{ form.password|as_crispy_field }}
+              </div>
+            </div>
+            {{ form.remember|as_crispy_field }}
+            <div class="footer text-center">
+              <button class="btn btn-primary btn-link btn-wd btn-lg" type="submit">Log In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+-->

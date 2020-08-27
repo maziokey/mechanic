@@ -9,6 +9,8 @@ pylint = "*"
 [packages]
 django = "*"
 psycopg2-binary = "==2.8.5"
+django-crispy-forms = "==1.9.1"
+django-allauth = "==0.41.0"
 
 [requires]
 python_version = "3.7"

@@ -5,6 +5,8 @@ services:
         command: python /code/manage.py runserver 0.0.0.0:8000
         # command: gunicorn bookstore_project.wsgi -b 0.0.0.0:8000 # new
         environment: 
+            - SECRET_KEY==43pv^43))2nfdubdd!)b8t^p+6-1-48w2urjg)z1rv2ay)7(d
+            - DEBUG=1
             - POSTGRES_PASSWORD=postgres
         volumes:
             - .:/code

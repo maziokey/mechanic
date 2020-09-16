@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load socialaccount %}
+
 {% load crispy_forms_tags %}
 
 {% block title %}Log In{% endblock title %}
@@ -23,8 +25,8 @@
                 <a href="#" class="btn btn-just-icon btn-link">
                   <i class="fa fa-twitter"></i>
                 </a>
-                <a href="#" class="btn btn-just-icon btn-link">
-                  <i class="fa fa-google-plus"></i>
+                <a href="{% provider_login_url 'github' %}" class="btn btn-just-icon btn-link">
+                  <i class="fa fa-github"></i>
                 </a>
               </div>
             </div>
@@ -104,5 +106,9 @@
     </div>
   </div>
 </div>
+
+
+
+
 
 -->

@@ -4,15 +4,24 @@ from django.urls import reverse
 from django.utils.translation import ugettext as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from allauth.account.forms import LoginForm
+from allauth.account.forms import LoginForm, SignupForm
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import HTML, Layout, Submit, Row, Column
 
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = get_user_model()
-        fields = ('email', 'username', 'password1', 'password2',)
+class CustomUserCreationForm(SignupForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        # Add magic stuff to redirect back.
+        self.helper.layout.append(
+            HTML(
+                "{% if redirect_field_value %}"
+                "<input type='hidden' name='{{ redirect_field_name }}'"
+                " value='{{ redirect_field_value }}' />"
+                "{% endif %}"
+            )
+        )
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
@@ -33,6 +42,7 @@ class CustomLoginForm(LoginForm):
                 "{% endif %}"
             )
         )
+
         # Add password reset link.
         self.helper.layout.append(
             HTML(
@@ -74,13 +84,19 @@ class CustomLoginForm(LoginForm):
         #self.helper.field_class = 'col-xs-8'
 
 <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="material-icons">face</i>
-                      </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="First Name">
-                  </div>
+    <div class="input-group-prepend">
+        <span class="input-group-text">
+        <i class="material-icons">face</i>
+        </span>
+    </div>
+    <input type="text" class="form-control" placeholder="First Name">
+</div>
 
+
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = get_user_model()
+        fields = ('email', 'username', 'password1', 'password2', )
 
 '''

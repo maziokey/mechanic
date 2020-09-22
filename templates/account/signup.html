@@ -9,8 +9,7 @@
 {% block title %}Sign Up{% endblock title %}
 
 {% block content %}
-<div class="section section-signup page-header" style="background-image: url({% static 'images/city.jpg' %});">
-  <div class="container">
+  <div>
     <div class="row">
       <div class="col-lg-4 col-md-6 mx-auto">
         <div class="card card-login">
@@ -32,7 +31,7 @@
             </div>
             <p class="description text-center">Or Be Classical</p>
             <div class="card-body">
-              {% crispy form %}
+              {{ form|crispy }}
               <div class="footer text-center">
                 <button class="btn btn-primary btn-link btn-wd btn-lg" type="submit">Sign Up</button>
               </div>
@@ -41,7 +40,6 @@
       </div>
     </div>
   </div>
-</div>
 {% endblock content %}
 
 <!-- test

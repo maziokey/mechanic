@@ -166,10 +166,6 @@ AUTHENTICATION_BACKENDS = (
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-ACCOUNT_FORMS = {
-    "login": "users.forms.CustomLoginForm"
-}
-
 ACCOUNT_SESSION_REMEMBER = True
 
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
@@ -180,6 +176,6 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 ACCOUNT_EMAIL_REQUIRED = True
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-
 ACCOUNT_UNIQUE_EMAIL = True
+
+DEFAULT_FROM_EMAIL = 'admin@mechanic.com'

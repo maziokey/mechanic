@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+
+{% block title %}Cars{% endblock title %}
+
+{% block content %}
+<h1 class="text-center">Cars</h1>
+
+    {% for car in car_list %}
+      <div>
+        <h2><a href="{{ car.get_absolute_url }}">{{ car.name }}</a></h2>
+      </div>
+    {% endfor %}
+{% endblock content %}

@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
-from .models import Car, Component, Part
+from .models import Make, Car_Model, Model_Year, Engine, Fuel, Component, Part
 
 # Create your views here.
-class CarListView(ListView):
-    model = Car
-    context_object_name = 'car_list'
-    template_name = 'inventory/car_list.html'
+class MakeListView(ListView):
+    model = Make
+    context_object_name = 'make_list'
+    template_name = 'inventory/make_list.html'
 
 class ComponentListView(ListView):
     model = Component
@@ -19,10 +19,10 @@ class PartListView(ListView):
     context_object_name = 'part_list'
     template_name = 'inventory/part_list.html'
 
-class CarDetailView(DetailView):
-    model = Car
-    context_object_name = 'car'
-    template_name = 'inventory/car_detail.html'
+class MakeDetailView(DetailView):
+    model = Make
+    context_object_name = 'make'
+    template_name = 'inventory/make_detail.html'
 
 class ComponentDetailView(DetailView):
     model = Component

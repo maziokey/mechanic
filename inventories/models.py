@@ -56,12 +56,13 @@ class Car_Model(models.Model):
 
 class Model_Year(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    make = models.ForeignKey(Make, related_name='carmodelyears', on_delete=models.CASCADE)
     car_model = models.ForeignKey(Car_Model, related_name='modelyears', on_delete=models.CASCADE)
-    year = models.PositiveIntegerField(default=current_year(), validators=[MinValueValidator(1984), max_value_current_year])
+    prod_year = models.PositiveIntegerField(default=current_year(), validators=[MinValueValidator(1984), max_value_current_year])
     slug = models.SlugField(default='', editable=False, max_length=200, null=False)
 
     def __str__(self):
-        return self.year
+        return str(self.prod_year)
 
     def get_absolute_url(self):
         kwargs = {
@@ -71,12 +72,14 @@ class Model_Year(models.Model):
         return reverse('model_year_detail', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
-        value = self.year
+        value = self.prod_year
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
 class Engine(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    make = models.ForeignKey(Make, related_name='carengines', on_delete=models.CASCADE)
+    car_model = models.ForeignKey(Car_Model, related_name='carmodelengines', on_delete=models.CASCADE)
     model_year = models.ForeignKey(Model_Year, related_name='engines', on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
     slug = models.SlugField(default='', editable=False, max_length=200, null=False)
@@ -98,6 +101,9 @@ class Engine(models.Model):
 
 class Fuel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    make = models.ForeignKey(Make, related_name='carfuels', on_delete=models.CASCADE)
+    car_model = models.ForeignKey(Car_Model, related_name='carmodelfuels', on_delete=models.CASCADE)
+    model_year = models.ForeignKey(Model_Year, related_name='yearfuels', on_delete=models.CASCADE)
     engine = models.ForeignKey(Engine, related_name='fuels', on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
     slug = models.SlugField(default='', editable=False, max_length=200, null=False)
@@ -119,6 +125,11 @@ class Fuel(models.Model):
 
 class Component(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    make = models.ForeignKey(Make, related_name='carcomponents', on_delete=models.CASCADE)
+    car_model = models.ForeignKey(Car_Model, related_name='carmodelcomponents', on_delete=models.CASCADE)
+    model_year = models.ForeignKey(Model_Year, related_name='yearcomponents', on_delete=models.CASCADE)
+    engine = models.ForeignKey(Engine, related_name='enginecomponents', on_delete=models.CASCADE)
+    fuel = models.ForeignKey(Fuel, related_name='fuelcomponents', on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
     slug = models.SlugField(default='', editable=False, max_length=200, null=False)
 

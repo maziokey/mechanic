@@ -8,18 +8,24 @@ class Car_ModelAdmin(admin.ModelAdmin):
     list_display = ("name", "make",)
 
 class Model_YearAdmin(admin.ModelAdmin):
-    list_display = ("prod_year", "car_model", "make",)
+    list_display = ("prod_year", "make", "car_model",)
 
 class EngineAdmin(admin.ModelAdmin):
-    list_display = ("name", "model_year", "car_model", "make",)
+    list_display = ("name", "make", "car_model", "model_year",)
 
 class FuelAdmin(admin.ModelAdmin):
-    list_display = ("name", "engine", "model_year", "car_model", "make",)
+    list_display = ("name", "make", "car_model", "model_year", "engine",)
+
+class ComponentAdmin(admin.ModelAdmin):
+    list_display = ("name", "make", "car_model", "model_year", "engine", "fuel",)
+
+class PartAdmin(admin.ModelAdmin):
+    list_display = ("name", "make", "car_model", "model_year", "engine", "stock", "price",)
 
 admin.site.register(Make)
 admin.site.register(Car_Model, Car_ModelAdmin)
 admin.site.register(Model_Year, Model_YearAdmin)
 admin.site.register(Engine, EngineAdmin)
 admin.site.register(Fuel, FuelAdmin)
-admin.site.register(Component)
-admin.site.register(Part)
+admin.site.register(Component, ComponentAdmin)
+admin.site.register(Part, PartAdmin)

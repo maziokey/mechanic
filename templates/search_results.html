@@ -1,0 +1,9 @@
+<h1>Search Results</h1>
+
+<ul>
+  {% for part in object_list %}
+    <li>
+      {{ part.name }}, {{ part.fuel }}
+    </li>
+  {% endfor %}
+</ul>

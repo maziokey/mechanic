@@ -20,7 +20,7 @@ class ComponentAdmin(admin.ModelAdmin):
     list_display = ("name", "make", "car_model", "model_year", "engine", "fuel",)
 
 class PartAdmin(admin.ModelAdmin):
-    list_display = ("name", "make", "car_model", "model_year", "engine", "stock", "price",)
+    list_display = ("name", "make", "car_model", "model_year", "engine", "fuel", "stock", "price",)
 
 admin.site.register(Make)
 admin.site.register(Car_Model, Car_ModelAdmin)

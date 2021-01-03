@@ -12,4 +12,14 @@
   <a href="{% url 'account_login' %}">Log In</a>
   <a href="{% url 'account_signup' %}">Sign Up</a>
 {% endif %}
+
+  <form action="{% url 'search_results' %}" method="get">
+    <input name="a" type="text" placeholder="Make">
+    <input name="b" type="text" placeholder="Model">
+    <input name="c" type="text" placeholder="Year">
+    <input name="d" type="text" placeholder="Engine">
+    <input name="e" type="text" placeholder="Fuel">
+    <button type="submit" name="button">Submit</button>
+  </form>
+
 {% endblock content %}

@@ -1,8 +1,10 @@
 from django.urls import path
 
-from .views import MakeListView, MakeDetailView, ComponentListView, ComponentDetailView, PartListView, PartDetailView
+from .views import SearchResultsView, MakeListView, MakeDetailView, ComponentListView, ComponentDetailView, PartListView, PartDetailView
 
 urlpatterns = [
+    path('search/', SearchResultsView.as_view(), name='search_results'),
+
     path('cars/', MakeListView.as_view(), name='make_list'),
     path('components/', ComponentListView.as_view(), name='component_list'),
     path('parts/', PartListView.as_view(), name='part_list'),
